@@ -1,0 +1,8 @@
+Human Mind v7
+GitHub の mind-series リポジトリへ、このZIP内のファイルをアップロードして同名ファイルを上書きしてください。
+human-person.html は新規ファイルなので追加してください。
+
+画面構成:
+1. human-mind.html = ホーム。人物名なし／大都会画像／新規人物登録
+2. human-person.html = 人物選択。人物名が見えるのはここ
+3. human-analysis.html = 159サイン観察。人物名・登録UIなし／人物ごとの背景保存
