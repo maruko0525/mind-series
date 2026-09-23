@@ -1,156 +1,23 @@
-<!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#eef3ff">
-<title>Human Mind</title><link rel="apple-touch-icon" href="human-mind-icon.png"><link rel="icon" href="human-mind-icon.png">
-<style>
-:root{--bg:#f4f6fb;--card:#fff;--ink:#172033;--muted:#667085;--line:#e3e8f2;--accent:#5b63d8;--accent2:#eef0ff;--ai:#e9f8f1;--aiink:#14734b}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#edf2ff 0,#f7f8fc 230px);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
-.app{max-width:850px;margin:auto;padding:18px 16px 135px}.hero{text-align:center;padding:18px 8px 8px}.brain{font-size:54px}.hero h1{margin:4px 0;font-size:30px;letter-spacing:.04em}.hero p{margin:4px 0;color:var(--muted)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;margin:14px 0;box-shadow:0 8px 26px rgba(37,50,100,.07)}
-h2{font-size:18px;margin:0 0 12px}.modegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mode{border:2px solid var(--line);border-radius:18px;padding:16px 10px;background:#fff;text-align:center;font-weight:700}.mode.active{border-color:var(--accent);background:var(--accent2)}.mode span{display:block;font-size:28px;margin-bottom:4px}
-.note{font-size:13px;color:var(--muted);line-height:1.55;margin-top:10px}.tabs{display:flex;gap:8px;overflow:auto;padding:2px 0 10px}.tab{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 12px;font-weight:700}.tab.active{background:var(--ink);color:#fff}
-.search{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px 13px;font-size:16px;margin-bottom:10px}
-.signs{display:grid;grid-template-columns:1fr 1fr;gap:9px}.sign{position:relative;border:1px solid var(--line);border-radius:14px;padding:12px 10px;background:#fff;min-height:52px;display:flex;align-items:center;gap:8px}.sign input{width:20px;height:20px;accent-color:var(--accent)}.sign.ai{background:var(--ai);border-color:#b9e6ce}.badge{font-size:10px;color:var(--aiink);background:#fff;border-radius:999px;padding:2px 5px;margin-left:auto}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.count{font-size:13px;color:var(--muted)}button{border:0;border-radius:14px;padding:12px 16px;font-weight:800;font-size:15px}.primary{background:var(--accent);color:#fff}.ghost{background:#eef1f6;color:var(--ink)}
-.result{display:none}.meter{height:9px;background:#edf0f5;border-radius:9px;overflow:hidden;margin:6px 0 14px}.meter>i{display:block;height:100%;background:var(--accent);border-radius:9px}.result h3{margin:15px 0 4px}.evidence{font-size:14px;color:#475467}.warn{font-size:12px;color:#667085;background:#f7f8fa;padding:10px;border-radius:12px;line-height:1.5}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:7px 10px calc(7px + env(safe-area-inset-bottom));z-index:50}.bottomin{max-width:850px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.navbtn{background:transparent;color:var(--muted);padding:6px 2px 4px;border-radius:13px;font-size:11px;font-weight:700}.navbtn span{display:block;font-size:22px;line-height:24px;margin-bottom:2px}.navbtn.active{background:var(--accent2);color:var(--accent)}.analyzeInline{width:100%;margin-top:14px;padding:14px;font-size:16px}
-@media(max-width:560px){.signs{grid-template-columns:1fr}.hero h1{font-size:27px}}
-
-.hmhero{position:relative;min-height:570px;margin:-18px -16px 18px;padding:24px 18px 28px;color:white;background:linear-gradient(90deg,rgba(4,45,91,.82),rgba(4,65,116,.35)),url("human-city-bg.png") center/cover no-repeat;display:flex;flex-direction:column;justify-content:flex-end}
-.hmbgpick{position:absolute;top:86px;right:18px;z-index:5;border:1px solid rgba(255,255,255,.45);background:rgba(0,0,0,.28);color:#fff;border-radius:999px;padding:8px 11px;font-size:11px;font-weight:800;backdrop-filter:blur(8px)}.hmbrand{position:absolute;top:18px;left:18px;right:18px;display:flex;align-items:center;gap:10px}.hmbrand img{width:58px;height:58px;border-radius:17px;object-fit:cover}.hmbrand b{font-size:24px}.hmbrand small{display:block;font-size:13px;font-weight:500;opacity:.86}
-.hmcopy{max-width:590px}.hmcopy .eyebrow{font-size:11px;letter-spacing:.18em;font-weight:800}.hmcopy h1{font-size:36px;line-height:1.25;margin:12px 0}.hmcopy p{font-size:15px;line-height:1.8;margin:0 0 15px}
-.privatebox{background:rgba(255,255,255,.94);color:var(--ink);border-radius:22px;padding:14px;box-shadow:0 12px 35px rgba(0,0,0,.18);backdrop-filter:blur(12px)}
-.privatebox label{display:block;font-size:12px;color:var(--muted);margin:0 0 7px;font-weight:800}.privatebox select{width:100%;padding:13px;border:1px solid var(--line);border-radius:14px;background:white;font-weight:800;font-size:16px;color:var(--ink)}
-.privatebox .privacy{font-size:11px;color:var(--muted);margin:8px 2px 0}.hmcta{width:100%;margin-top:10px;background:#268ff0;color:white;padding:14px}
-
-/* v4: home is a clean gateway; person selection happens on analysis screen */
-#privatePerson, #privatePersonCard, .privatePerson, .person-select-card, .privacySelectCard,
-.hmselect, .hm-person-select, .personPicker, .pickerCard {display:none!important}
-
-#privatePerson,#privatePersonCard,.personCard,.person-card,.profileCard,.profile-card,
-.hmselect,.hm-person-select,.personPicker,.pickerCard,.privacySelectCard{display:none!important}
-</style><meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mind Series">
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827"><title>Human Mind</title>
 <link rel="apple-touch-icon" href="human-mind-icon.png">
-<link rel="manifest" href="manifest.webmanifest">
-</head>
-<body><main class="app">
-<section class="hmhero" id="homeTop"><button class="hmbgpick" id="humanBgBtn" type="button">📷 背景を変更</button><input id="humanBgInput" type="file" accept="image/*" hidden>
-<div class="hmbrand"><img src="human-mind-icon.png"><div><b>Human Mind</b><small>人の気持ちを、もっと深く</small></div></div>
-<div class="hmcopy"><div class="eyebrow">UNDERSTAND PEOPLE, A KINDER WORLD</div><h1>人を知る。<br>もっとやさしい世界へ。</h1><p>観察を重ねるほど見えてくる、その人自身の「普段」。<br>単独のサインで決めつけず、変化を重ねて考えます。</p>
-<div class="privatebox"><label>🔒 観察する人物を選択</label><select id="privatePerson" onchange="selectPrivatePerson(this.value)"><option value="">タップして人物を選ぶ</option></select><div class="privacy">選んだ人物名は、この選択欄を閉じた状態では大きく表示しません。</div><button class="hmcta" onclick="goObserve()">この人を観察する →</button></div></div></section>
-
-<section class="card"><h2>分析の始め方</h2><div class="modegrid">
-<button class="mode" id="photoMode" onclick="setMode('photo')"><span>📷</span>写真から</button>
-<button class="mode active" id="manualMode" onclick="setMode('manual')"><span>👤</span>観察して入力</button></div>
-<div id="modeText" class="note">写真なしで開始します。覚えているサインを複数選択してください。「分からない」ものは無理に選ぶ必要はありません。</div>
-<input id="photoInput" type="file" accept="image/*" capture="environment" hidden>
-<div id="photoBox" style="display:none;margin-top:12px"><button class="primary" onclick="photoInput.click()">写真を選ぶ / 撮る</button><div class="note">この試作版では写真を端末内でプレビューします。画像AI接続時は、表情・視線・姿勢・動きを仮選択し、ユーザーが自由に補正できる設計です。</div><img id="preview" style="display:none;width:100%;max-height:280px;object-fit:contain;border-radius:16px;margin-top:10px"></div>
-</section>
-
-<section class="card" id="observeCard"><div class="row"><h2>観察サイン</h2><div class="count"><b id="selectedCount">0</b> / 159 選択</div></div>
-<input class="search" id="search" placeholder="サインを検索…" oninput="render()"><div class="tabs" id="tabs"></div><div class="signs" id="signs"></div><button class="primary analyzeInline" onclick="analyze()">選択サインを分析</button></section>
-
-<section class="card result" id="result"><div class="row"><h2>🧠 分析メモ</h2><button class="ghost" onclick="goObserve()">← 観察へ</button></div><div id="summary"></div>
-<div class="warn">これは観察された行動の組み合わせを整理する補助ツールです。単独のサインから感情・意図・嘘などを断定しません。本人の普段の状態、状況、文化・個人差も考慮してください。</div></section>
-</main>
-<div class="bottom"><div class="bottomin">
-<button class="navbtn active" id="navHome" onclick="navTo('home')"><span>⌂</span>ホーム</button>
-<button class="navbtn" id="navObserve" onclick="navTo('observe')"><span>👀</span>観察</button>
-<button class="navbtn" id="navAnalysis" onclick="navTo('analysis')"><span>🧠</span>分析</button>
-<button class="navbtn" id="navLearn" onclick="showLearning()"><span>🧠</span>学習</button>
-<button class="navbtn" id="navSeries" onclick="location.href='https://maruko0525.github.io/mind-series/'"><span>▦</span>シリーズ</button>
-</div></div>
-<script>
-
-const HUMAN_BG_KEY="humanmind_custom_bg_v1";
-function applyHumanBg(src){
-  const h=document.getElementById("homeTop"); if(!h)return;
-  const img=src||"human-city-bg.png";
-  h.style.backgroundImage=`linear-gradient(90deg,rgba(4,45,91,.82),rgba(4,65,116,.35)),url("${img}")`;
-  h.style.backgroundSize="cover"; h.style.backgroundPosition="center";
-}
-try{applyHumanBg(localStorage.getItem(HUMAN_BG_KEY)||"")}catch(e){applyHumanBg("")}
-document.getElementById("humanBgBtn").onclick=()=>document.getElementById("humanBgInput").click();
-document.getElementById("humanBgInput").onchange=e=>{
-  const f=e.target.files&&e.target.files[0]; if(!f)return;
-  const r=new FileReader();
-  r.onload=()=>{try{localStorage.setItem(HUMAN_BG_KEY,r.result);applyHumanBg(r.result)}
-  catch(err){alert("画像が大きすぎます。少し小さい画像を選んでください。")}};
-  r.readAsDataURL(f);
-};
-const DATA=[{"id": "S001", "category": "表情", "label": "自然な表情"}, {"id": "S002", "category": "表情", "label": "軽い笑顔"}, {"id": "S003", "category": "表情", "label": "強い笑顔"}, {"id": "S004", "category": "表情", "label": "口角が下がる"}, {"id": "S005", "category": "表情", "label": "唇を強く閉じる"}, {"id": "S006", "category": "表情", "label": "唇を噛む"}, {"id": "S007", "category": "表情", "label": "口が少し開く"}, {"id": "S008", "category": "表情", "label": "顎に力が入る"}, {"id": "S009", "category": "表情", "label": "眉が上がる"}, {"id": "S010", "category": "表情", "label": "眉が中央に寄る"}, {"id": "S011", "category": "表情", "label": "眉が下がる"}, {"id": "S012", "category": "表情", "label": "片眉が上がる"}, {"id": "S013", "category": "表情", "label": "目を大きく開く"}, {"id": "S014", "category": "表情", "label": "目を細める"}, {"id": "S015", "category": "表情", "label": "頬が上がる"}, {"id": "S016", "category": "表情", "label": "鼻にしわ"}, {"id": "S017", "category": "表情", "label": "表情が固まる"}, {"id": "S018", "category": "表情", "label": "左右非対称"}, {"id": "S019", "category": "表情", "label": "急に無表情"}, {"id": "S020", "category": "表情", "label": "表情変化が多い"}, {"id": "S021", "category": "視線", "label": "正面を見る"}, {"id": "S022", "category": "視線", "label": "相手を長く見る"}, {"id": "S023", "category": "視線", "label": "視線をすぐ外す"}, {"id": "S024", "category": "視線", "label": "下を見る"}, {"id": "S025", "category": "視線", "label": "上を見る"}, {"id": "S026", "category": "視線", "label": "横を見る"}, {"id": "S027", "category": "視線", "label": "左右に頻繁に動く"}, {"id": "S028", "category": "視線", "label": "視線が固定"}, {"id": "S029", "category": "視線", "label": "視線移動が少ない"}, {"id": "S030", "category": "視線", "label": "瞬きが増える"}, {"id": "S031", "category": "視線", "label": "瞬きが減る"}, {"id": "S032", "category": "視線", "label": "長い瞬き"}, {"id": "S033", "category": "視線", "label": "質問直後に逸らす"}, {"id": "S034", "category": "視線", "label": "回答中に逸らす"}, {"id": "S035", "category": "視線", "label": "話題変更で視線変化"}, {"id": "S036", "category": "姿勢", "label": "自然"}, {"id": "S037", "category": "姿勢", "label": "前傾"}, {"id": "S038", "category": "姿勢", "label": "強い前傾"}, {"id": "S039", "category": "姿勢", "label": "後傾"}, {"id": "S040", "category": "姿勢", "label": "身体を引く"}, {"id": "S041", "category": "姿勢", "label": "身体を相手へ向ける"}, {"id": "S042", "category": "姿勢", "label": "身体を外へ向ける"}, {"id": "S043", "category": "姿勢", "label": "背筋が伸びる"}, {"id": "S044", "category": "姿勢", "label": "縮こまる"}, {"id": "S045", "category": "姿勢", "label": "肩が上がる"}, {"id": "S046", "category": "姿勢", "label": "肩が下がる"}, {"id": "S047", "category": "姿勢", "label": "肩に力"}, {"id": "S048", "category": "姿勢", "label": "頭を下げる"}, {"id": "S049", "category": "姿勢", "label": "頭を傾ける"}, {"id": "S050", "category": "姿勢", "label": "顎を上げる"}, {"id": "S051", "category": "姿勢", "label": "身体が硬い"}, {"id": "S052", "category": "姿勢", "label": "姿勢変化が多い"}, {"id": "S053", "category": "姿勢", "label": "姿勢変化が少ない"}, {"id": "S054", "category": "動き", "label": "自然"}, {"id": "S055", "category": "動き", "label": "身振りが増える"}, {"id": "S056", "category": "動き", "label": "身振りが減る"}, {"id": "S057", "category": "動き", "label": "動きが速くなる"}, {"id": "S058", "category": "動き", "label": "動きが遅くなる"}, {"id": "S059", "category": "動き", "label": "動きが止まる"}, {"id": "S060", "category": "動き", "label": "腕を組む"}, {"id": "S061", "category": "動き", "label": "手を握る"}, {"id": "S062", "category": "動き", "label": "手を隠す"}, {"id": "S063", "category": "動き", "label": "手のひらを見せる"}, {"id": "S064", "category": "動き", "label": "顔を触る"}, {"id": "S065", "category": "動き", "label": "口元を触る"}, {"id": "S066", "category": "動き", "label": "鼻を触る"}, {"id": "S067", "category": "動き", "label": "首を触る"}, {"id": "S068", "category": "動き", "label": "髪を触る"}, {"id": "S069", "category": "動き", "label": "指を動かす"}, {"id": "S070", "category": "動き", "label": "物をいじる"}, {"id": "S071", "category": "動き", "label": "足を揺らす"}, {"id": "S072", "category": "動き", "label": "足を組む"}, {"id": "S073", "category": "動き", "label": "体勢を頻繁に変える"}, {"id": "S074", "category": "動き", "label": "相手の動きを模倣"}, {"id": "S075", "category": "動き", "label": "距離を縮める"}, {"id": "S076", "category": "動き", "label": "距離を広げる"}, {"id": "S077", "category": "声", "label": "普段通り"}, {"id": "S078", "category": "声", "label": "高くなる"}, {"id": "S079", "category": "声", "label": "低くなる"}, {"id": "S080", "category": "声", "label": "高さが不安定"}, {"id": "S081", "category": "声", "label": "声量が大きい"}, {"id": "S082", "category": "声", "label": "声量が小さい"}, {"id": "S083", "category": "声", "label": "急に小さくなる"}, {"id": "S084", "category": "声", "label": "抑揚が増える"}, {"id": "S085", "category": "声", "label": "抑揚が減る"}, {"id": "S086", "category": "声", "label": "単調になる"}, {"id": "S087", "category": "声", "label": "声が震える"}, {"id": "S088", "category": "声", "label": "かすれる"}, {"id": "S089", "category": "声", "label": "語尾が弱くなる"}, {"id": "S090", "category": "声", "label": "語尾が強くなる"}, {"id": "S091", "category": "声", "label": "笑い声が増える"}, {"id": "S092", "category": "声", "label": "ため息交じり"}, {"id": "S093", "category": "話す速度", "label": "普段通り"}, {"id": "S094", "category": "話す速度", "label": "速くなる"}, {"id": "S095", "category": "話す速度", "label": "遅くなる"}, {"id": "S096", "category": "話す速度", "label": "急に速くなる"}, {"id": "S097", "category": "話す速度", "label": "急に遅くなる"}, {"id": "S098", "category": "話す速度", "label": "即答"}, {"id": "S099", "category": "話す速度", "label": "回答まで間がある"}, {"id": "S100", "category": "話す速度", "label": "長い沈黙"}, {"id": "S101", "category": "話す速度", "label": "短い沈黙が増える"}, {"id": "S102", "category": "話す速度", "label": "相手に被せる"}, {"id": "S103", "category": "話す速度", "label": "言い直しが増える"}, {"id": "S104", "category": "話す速度", "label": "言葉につまる"}, {"id": "S105", "category": "話す速度", "label": "途中で止まる"}, {"id": "S106", "category": "話す速度", "label": "話す量が増える"}, {"id": "S107", "category": "話す速度", "label": "話す量が減る"}, {"id": "S108", "category": "話す速度", "label": "ターンが短くなる"}, {"id": "S109", "category": "呼吸", "label": "普段通り"}, {"id": "S110", "category": "呼吸", "label": "速くなる"}, {"id": "S111", "category": "呼吸", "label": "遅くなる"}, {"id": "S112", "category": "呼吸", "label": "浅くなる"}, {"id": "S113", "category": "呼吸", "label": "深くなる"}, {"id": "S114", "category": "呼吸", "label": "大きく息を吸う"}, {"id": "S115", "category": "呼吸", "label": "ため息"}, {"id": "S116", "category": "呼吸", "label": "一瞬止める"}, {"id": "S117", "category": "呼吸", "label": "呼吸が不規則"}, {"id": "S118", "category": "呼吸", "label": "胸の動きが大きい"}, {"id": "S119", "category": "呼吸", "label": "肩で呼吸"}, {"id": "S120", "category": "呼吸", "label": "話題直後に変化"}, {"id": "S121", "category": "言葉", "label": "普段通り"}, {"id": "S122", "category": "言葉", "label": "断定が増える"}, {"id": "S123", "category": "言葉", "label": "曖昧表現が増える"}, {"id": "S124", "category": "言葉", "label": "否定が増える"}, {"id": "S125", "category": "言葉", "label": "肯定が増える"}, {"id": "S126", "category": "言葉", "label": "同じ言葉を繰り返す"}, {"id": "S127", "category": "言葉", "label": "説明が長くなる"}, {"id": "S128", "category": "言葉", "label": "説明が短くなる"}, {"id": "S129", "category": "言葉", "label": "質問返し"}, {"id": "S130", "category": "言葉", "label": "話題を変える"}, {"id": "S131", "category": "言葉", "label": "主語が減る"}, {"id": "S132", "category": "言葉", "label": "一人称が増える"}, {"id": "S133", "category": "言葉", "label": "二人称が増える"}, {"id": "S134", "category": "言葉", "label": "感情語が増える"}, {"id": "S135", "category": "言葉", "label": "感情語が減る"}, {"id": "S136", "category": "言葉", "label": "理由説明が増える"}, {"id": "S137", "category": "言葉", "label": "自己修正が増える"}, {"id": "S138", "category": "言葉", "label": "具体性が増える"}, {"id": "S139", "category": "言葉", "label": "具体性が減る"}, {"id": "S140", "category": "言葉", "label": "同意が増える"}, {"id": "S141", "category": "言葉", "label": "反論が増える"}, {"id": "S142", "category": "言葉", "label": "冗談が増える"}, {"id": "S143", "category": "言葉", "label": "謝罪が増える"}, {"id": "S144", "category": "言葉", "label": "沈黙で返す"}, {"id": "S145", "category": "変化", "label": "質問直後に変化"}, {"id": "S146", "category": "変化", "label": "特定の話題で変化"}, {"id": "S147", "category": "変化", "label": "特定の人物名で変化"}, {"id": "S148", "category": "変化", "label": "過去の話で変化"}, {"id": "S149", "category": "変化", "label": "未来の話で変化"}, {"id": "S150", "category": "変化", "label": "お金の話で変化"}, {"id": "S151", "category": "変化", "label": "関係性の話で変化"}, {"id": "S152", "category": "変化", "label": "褒めた直後に変化"}, {"id": "S153", "category": "変化", "label": "批判した直後に変化"}, {"id": "S154", "category": "変化", "label": "沈黙後に変化"}, {"id": "S155", "category": "変化", "label": "第三者登場で変化"}, {"id": "S156", "category": "変化", "label": "普段との差が大きい"}, {"id": "S157", "category": "変化", "label": "変化が複数領域で同時"}, {"id": "S158", "category": "変化", "label": "すぐ元に戻る"}, {"id": "S159", "category": "変化", "label": "変化が持続する"}];
-const ICONS={"表情": "🙂", "視線": "👀", "姿勢": "🧍", "動き": "👐", "声": "🎙️", "話す速度": "⏱️", "呼吸": "🫁", "言葉": "💬", "変化": "🔄"};
-let cat="すべて", mode="manual", selected=new Set(), aiSelected=new Set();
-function setMode(m){mode=m;photoMode.classList.toggle("active",m==="photo");manualMode.classList.toggle("active",m==="manual");photoBox.style.display=m==="photo"?"block":"none";modeText.textContent=m==="photo"?"写真を入口にして、AIが判定したサインを仮選択→あなたが補正する流れです。":"写真なしで開始します。覚えているサインを複数選択してください。「分からない」ものは無理に選ぶ必要はありません。";}
-photoInput.onchange=e=>{let f=e.target.files[0];if(!f)return;preview.src=URL.createObjectURL(f);preview.style.display="block"; // demo AI suggestions
-["S002","S014","S025","S047"].forEach(x=>{selected.add(x);aiSelected.add(x)});render();modeText.textContent="🤖 AI仮選択（デモ）を反映しました。違う項目はチェックを外し、足りないサインを追加してください。";};
-function setNav(which){["Home","Observe","Analysis"].forEach(n=>{let e=document.getElementById("nav"+n);if(e)e.classList.remove("active")});let m={home:"Home",observe:"Observe",analysis:"Analysis"};let e=document.getElementById("nav"+m[which]);if(e)e.classList.add("active")}
-function navTo(which){if(which==="home"){homeTop.scrollIntoView({behavior:"smooth"});setNav("home");return}if(which==="observe"){observeCard.scrollIntoView({behavior:"smooth"});setNav("observe");return}if(which==="analysis"){if(result.style.display!=="block"){analyze()}else{result.scrollIntoView({behavior:"smooth"});setNav("analysis")}}}
-function goObserve(){observeCard.scrollIntoView({behavior:"smooth"});setNav("observe")}
-
-function loadPrivatePeople(){
-  let people=[];try{people=JSON.parse(localStorage.getItem("mindPeople")||"[]")}catch(e){}
-  const sel=document.getElementById("privatePerson"); if(!sel)return;
-  sel.innerHTML='<option value="">タップして人物を選ぶ</option>'+people.map((p,i)=>`<option value="${i}">${String(p.name||"人物").replace(/</g,"&lt;")}</option>`).join("")+'<option value="__new">＋ 新しい人物を登録</option>';
-}
-function selectPrivatePerson(v){
- if(v==="__new"){location.href="index.html";return}
- if(v==="")return;
- let people=[];try{people=JSON.parse(localStorage.getItem("mindPeople")||"[]")}catch(e){}
- if(people[v])localStorage.setItem("currentMindPerson",JSON.stringify(people[v]));
-}
-function showLearning(){
- alert("学習：同じ人物の観察を重ね、その人自身の普段との違いを比較する個人モデルを育てる画面です。");
- setNav("home");
-}
-function tabsRender(){let cs=["すべて",...Object.keys(ICONS)];tabs.innerHTML=cs.map(c=>`<button class="tab ${c===cat?"active":""}" onclick="cat='${c}';tabsRender();render()">${c==="すべて"?"✨":ICONS[c]} ${c}</button>`).join("")}
-function render(){let q=search.value.trim();let list=DATA.filter(x=>(cat==="すべて"||x.category===cat)&&(!q||x.label.includes(q)||x.category.includes(q)));signs.innerHTML=list.map(x=>`<label class="sign ${aiSelected.has(x.id)?"ai":""}"><input type="checkbox" ${selected.has(x.id)?"checked":""} onchange="toggle('${x.id}',this.checked)"><span>${ICONS[x.category]} ${x.label}</span>${aiSelected.has(x.id)?'<span class="badge">🤖 AI</span>':""}</label>`).join("");selectedCount.textContent=selected.size}
-function toggle(id,on){on?selected.add(id):selected.delete(id);if(!on)aiSelected.delete(id);render()}
-function clearAll(){selected.clear();aiSelected.clear();result.style.display="none";render()}
-function analyze(){let arr=DATA.filter(x=>selected.has(x.id));if(!arr.length){alert("観察できたサインを1つ以上選んでください");return}
-let groups={};arr.forEach(x=>(groups[x.category]??=[]).push(x.label));let multi=Object.keys(groups).length;
-let change=groups["変化"]?.length||0;let load=(groups["呼吸"]?.length||0)+(groups["声"]?.length||0)+(groups["話す速度"]?.length||0);
-let lines=[];
-if(multi>=5)lines.push(["複数領域の変化",Math.min(92,48+multi*6),`${multi}領域からサインが選択されています。単一の動作ではなく、領域をまたぐパターンとして確認する価値があります。`]);
-if(change)lines.push(["状況に伴う変化",Math.min(90,55+change*5),`時間・話題に関連する変化サインが${change}件あります。何が起きた直後かを重視します。`]);
-if(load>=3)lines.push(["覚醒・負荷の変化候補",Math.min(88,45+load*5),`声・発話・呼吸から${load}件の変化が選択されています。緊張だけでなく、興奮・集中・考え込み等も候補です。`]);
-if(!lines.length)lines.push(["観察パターン",55,"現時点ではサイン数が少なめです。表情だけでなく、視線・姿勢・声・呼吸・言葉など別領域を追加すると比較しやすくなります。"]);
-let detail=Object.entries(groups).map(([k,v])=>`<h3>${ICONS[k]} ${k} <small>(${v.length})</small></h3><div class="evidence">${v.join(" ・ ")}</div>`).join("");
-summary.innerHTML=lines.map(([n,p,d])=>`<h3>${n}　${p}%</h3><div class="meter"><i style="width:${p}%"></i></div><div class="evidence">${d}</div>`).join("")+`<h3>今回の観察サイン</h3>${detail}<p class="note">次の実装では、この組み合わせから「追加で確認すると情報量が増えるサイン」を自動提示します。</p>`;
-result.style.display="block";result.scrollIntoView({behavior:"smooth"});setNav("analysis") }
-loadPrivatePeople();tabsRender();render();
-</script><script>
-window.addEventListener("DOMContentLoaded",()=>{
-  [...document.querySelectorAll("section,div")].forEach(el=>{
-    const t=(el.innerText||"").trim();
-    if(t.includes("観察する人物を選択") && el.querySelector("select") && el.children.length<8){
-      el.style.display="none";
-    }
-  });
-  [...document.querySelectorAll("button,a")].forEach(el=>{
-    const t=(el.textContent||"").trim();
-    if(t.includes("この人を観察する") || t.includes("観察をはじめる")){
-      el.onclick=(e)=>{e.preventDefault();location.href="human-analysis.html"};
-    }
-  });
-});
-</script><script>
-window.addEventListener("DOMContentLoaded",()=>{
- [...document.querySelectorAll("section,div")].forEach(el=>{
-   const t=(el.innerText||"").trim();
-   if((t.includes("観察する人物を選択")||t.includes("この人を観察")) &&
-      (el.querySelector("select")||el.querySelector("button")) && el.children.length<10) el.style.display="none";
- });
- [...document.querySelectorAll("button,a")].forEach(el=>{
-   const t=(el.textContent||"").trim();
-   if(t.includes("観察をはじめる")||t.includes("Human Mind分析を開く")||t.includes("この人を観察"))
-      el.onclick=e=>{e.preventDefault();location.href="human-analysis.html"};
-   if(t==="ホーム"||t.endsWith("ホーム")) el.onclick=e=>{e.preventDefault();location.href="human-mind.html"};
-   if(t==="観察"||t.endsWith("観察")) el.onclick=e=>{e.preventDefault();location.href="human-analysis.html"};
- });
-});
-</script></body></html>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;color:#fff;background:#111827}
+.hero{min-height:100vh;background:linear-gradient(rgba(8,18,38,.28),rgba(8,18,38,.72)),url("human-city-bg.png") center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px 20px 110px}
+.box{width:min(560px,100%);padding:26px 20px;border-radius:28px;background:rgba(12,22,43,.40);backdrop-filter:blur(5px)}
+.brain{font-size:58px}.title{font-size:36px;font-weight:900;letter-spacing:.05em;margin:6px 0}.sub{font-size:15px;line-height:1.7;margin:0 0 24px}
+button{border:0;border-radius:18px;font-weight:850;font-size:17px;padding:16px 22px}.start{width:100%;background:#5b63d8;color:white}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);color:#667085;padding:7px 10px calc(7px + env(safe-area-inset-bottom))}
+.nav{max-width:850px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:2px}.nav button{background:transparent;color:#667085;padding:6px 1px;font-size:10px}.nav span{display:block;font-size:21px}.nav .on{color:#5b63d8;background:#eef0ff}
+</style></head><body>
+<section class="hero"><div class="box"><div class="brain">🧠</div><div class="title">HUMAN MIND</div>
+<p class="sub">人の「今」を観察して、AIと一緒に考える。</p>
+<button class="start" onclick="location.href='human-analysis.html'">観察をはじめる</button></div></section>
+<div class="bottom"><div class="nav">
+<button class="on"><span>⌂</span>ホーム</button>
+<button onclick="location.href='human-analysis.html'"><span>👀</span>観察</button>
+<button onclick="location.href='human-analysis.html#result'"><span>🧠</span>分析</button>
+<button onclick="location.href='human-analysis.html#learning'"><span>📚</span>学習</button>
+<button onclick="location.href='index.html'"><span>◫</span>シリーズ</button>
+</div></div></body></html>
