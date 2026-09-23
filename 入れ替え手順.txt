@@ -1,10 +1,1 @@
-【Human Mind v11 全入れ替え版】
-今回は上書きではなく、mind-series リポジトリの既存ファイルを全部削除してから、このZIPの中身だけを全部アップロードしてください。
-
-・index.html = Mind Series入口
-・human-mind.html = 新ホーム（旧人物カード画面なし／人物登録はここだけ）
-・human-analysis.html = 観察（人物選択／人物ごとの背景変更／159サイン）
-・human-home-bg.jpg = ホーム背景
-・human-night-bg.jpg = 観察画面の夜景背景
-
-159サインと分析処理は従来版を維持しています。
+Human Mind v12：ホームに「登録した人を管理する」を追加。削除時は確認後、人物の観察・分析履歴と人物別背景を削除します。159サイン・分析処理はv11から変更していません。今回はZIP内をmind-series rootへ上書きでOKです。
