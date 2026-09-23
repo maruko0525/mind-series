@@ -122,4 +122,13 @@ document.getElementById("personBgInput").onchange=e=>{
   };r.readAsDataURL(f)
 };
 populatePeople();
+</script><script>
+window.addEventListener("DOMContentLoaded",()=>{
+ [...document.querySelectorAll("button,a")].forEach(el=>{
+   const t=(el.textContent||"").trim();
+   if(t==="ホーム"||t.endsWith("ホーム")) el.onclick=e=>{e.preventDefault();location.href="human-mind.html"};
+   if(t==="観察"||t.endsWith("観察")) el.onclick=e=>{e.preventDefault();location.href="human-analysis.html"};
+   if(t==="シリーズ"||t.endsWith("シリーズ")) el.onclick=e=>{e.preventDefault();location.href="https://maruko0525.github.io/mind-series/"};
+ });
+});
 </script></body></html>

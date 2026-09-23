@@ -28,6 +28,9 @@ h2{font-size:18px;margin:0 0 12px}.modegrid{display:grid;grid-template-columns:1
 /* v4: home is a clean gateway; person selection happens on analysis screen */
 #privatePerson, #privatePersonCard, .privatePerson, .person-select-card, .privacySelectCard,
 .hmselect, .hm-person-select, .personPicker, .pickerCard {display:none!important}
+
+#privatePerson,#privatePersonCard,.personCard,.person-card,.profileCard,.profile-card,
+.hmselect,.hm-person-select,.personPicker,.pickerCard,.privacySelectCard{display:none!important}
 </style><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Mind Series">
@@ -134,5 +137,20 @@ window.addEventListener("DOMContentLoaded",()=>{
       el.onclick=(e)=>{e.preventDefault();location.href="human-analysis.html"};
     }
   });
+});
+</script><script>
+window.addEventListener("DOMContentLoaded",()=>{
+ [...document.querySelectorAll("section,div")].forEach(el=>{
+   const t=(el.innerText||"").trim();
+   if((t.includes("観察する人物を選択")||t.includes("この人を観察")) &&
+      (el.querySelector("select")||el.querySelector("button")) && el.children.length<10) el.style.display="none";
+ });
+ [...document.querySelectorAll("button,a")].forEach(el=>{
+   const t=(el.textContent||"").trim();
+   if(t.includes("観察をはじめる")||t.includes("Human Mind分析を開く")||t.includes("この人を観察"))
+      el.onclick=e=>{e.preventDefault();location.href="human-analysis.html"};
+   if(t==="ホーム"||t.endsWith("ホーム")) el.onclick=e=>{e.preventDefault();location.href="human-mind.html"};
+   if(t==="観察"||t.endsWith("観察")) el.onclick=e=>{e.preventDefault();location.href="human-analysis.html"};
+ });
 });
 </script></body></html>
