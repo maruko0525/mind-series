@@ -12,11 +12,11 @@ button{border:0;border-radius:17px;padding:15px 18px;font-size:16px;font-weight:
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;display:none;align-items:center;justify-content:center;padding:20px}.modal.on{display:flex}.modalbox{width:min(440px,100%);background:#fff;color:#172033;border-radius:24px;padding:20px}.modalbox h2{margin:0 0 12px}.modalbox input{width:100%;padding:13px;border:1px solid #dce3ee;border-radius:13px;font-size:16px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.cancel{background:#eef1f6}.save{background:#4f63df;color:white}
 </style></head><body>
 <section class="hero"><div class="panel"><div class="brand">🧠 Human Mind</div><p class="lead">観察を重ねて、その人自身の「普段」と比較する。</p>
-<button class="primary" onclick="location.href='human-person.html'">👀 観察をはじめる</button>
+<button class="primary" onclick="location.href='human-analysis.html'">👀 観察をはじめる</button>
 <button class="register" onclick="openRegister()">＋ 新しい人を登録する</button></div></section>
 <div class="bottom"><div class="nav">
-<button class="on"><span>⌂</span>ホーム</button><button onclick="location.href='human-person.html'"><span>👀</span>観察</button>
-<button onclick="location.href='human-person.html'"><span>🧠</span>分析</button><button onclick="location.href='human-person.html'"><span>📚</span>学習</button>
+<button class="on"><span>⌂</span>ホーム</button><button onclick="location.href='human-analysis.html'"><span>👀</span>観察</button>
+<button onclick="location.href='human-analysis.html'"><span>🧠</span>分析</button><button onclick="location.href='human-analysis.html'"><span>📚</span>学習</button>
 <button onclick="location.href='index.html'"><span>◫</span>シリーズ</button></div></div>
 <div class="modal" id="modal"><div class="modalbox"><h2>人物を登録</h2><input id="newName" placeholder="名前・ニックネーム">
 <div class="actions"><button class="cancel" onclick="closeRegister()">キャンセル</button><button class="save" onclick="savePerson()">登録する</button></div></div></div>
@@ -24,5 +24,5 @@ button{border:0;border-radius:17px;padding:15px 18px;font-size:16px;font-weight:
 function people(){try{return JSON.parse(localStorage.getItem("mindPeople")||"[]")}catch(e){return[]}}
 function openRegister(){modal.classList.add("on");newName.value="";setTimeout(()=>newName.focus(),100)}
 function closeRegister(){modal.classList.remove("on")}
-function savePerson(){let n=newName.value.trim();if(!n){alert("名前かニックネームを入力してください");return}let ps=people(),id="p_"+Date.now();ps.push({id,name:n,observations:[]});localStorage.setItem("mindPeople",JSON.stringify(ps));localStorage.setItem("currentMindPerson",id);closeRegister();location.href="human-person.html"}
+function savePerson(){let n=newName.value.trim();if(!n){alert("名前かニックネームを入力してください");return}let ps=people(),id="p_"+Date.now();ps.push({id,name:n,observations:[]});localStorage.setItem("mindPeople",JSON.stringify(ps));localStorage.setItem("currentMindPerson",id);closeRegister();location.href="human-analysis.html"}
 </script></body></html>
