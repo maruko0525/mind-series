@@ -1,0 +1,14 @@
+Mind Series 最新版
+
+GitHub の mind-series リポジトリだけを更新します。
+dog-mind リポジトリは今回は触りません。
+
+アップロードするファイル:
+・index.html
+・human-mind.html
+・dog-mind-icon.png
+・mind-series-icon.png
+・human-mind-icon.png
+・human-city-bg.png
+
+古い同名ファイルはこの最新版で置き換えてください。
